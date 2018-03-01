@@ -67,6 +67,10 @@ export class ProfileComponent implements OnInit {
     }
     else{
       this.showdetail=false;
+      this.name = this._profileService.details.name;
+      this.age = this._profileService.details.age;
+      this.Father_Name = this._profileService.details.Father_Name;
+      this.Mother_Name = this._profileService.details.Mother_Name;
     }
   }
   save() {

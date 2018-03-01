@@ -60,6 +60,9 @@ export class SchoolComponent implements OnInit {
     }
     else{
       this.showdetail=false;
+      this.School_Name = this._schoolService.schooldetails.School_Name;
+      this.Address = this._schoolService.schooldetails.Address;
+      this.Marks = this._schoolService.schooldetails.Marks;
     }
   }
 

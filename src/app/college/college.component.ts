@@ -16,11 +16,11 @@ import { CollegeService } from '../college.service';
   
   </div>
   
-  <div class="form" *ngIf="!showdetail">
+<div class="form" *ngIf="!showdetail">
 <label>College Name:</label>
 {{collegedetailss.College_Name}}<br>
-<label>Address:</label> <br>
-{{collegedetailss.Address}}
+<label>Address:</label> 
+{{collegedetailss.Address}}<br>
 <label>CGPA:</label> 
 {{collegedetailss.cgpa}} <br>
 <button (click)="update()" type="submit">Update</button>
@@ -58,6 +58,9 @@ export class CollegeComponent implements OnInit {
     }
     else {
       this.showdetail = false;
+      this.College_Name = this._collegeService.collegedetails.College_Name;
+      this.Address = this._collegeService.collegedetails.Address;
+      this.cgpa = this._collegeService.collegedetails.cgpa;
     }
   }
   save() {
