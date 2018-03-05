@@ -70,6 +70,7 @@ export class WebComponent implements OnInit {
     this.router.navigate(['/web/college']);
   }
   logout(){
+    localStorage.clear();
     this.router.navigate(['/login']);
   }
 

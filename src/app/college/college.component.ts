@@ -53,15 +53,19 @@ export class CollegeComponent implements OnInit {
 
   ngOnInit() {
     this.collegedetailss = this._collegeService.collegedetails;
+    this.collegedetailss=this._collegeService.getcollegedata();
     if (this.collegedetailss.College_Name == '') {
       this.showdetail = true;
     }
     else {
       this.showdetail = false;
-      this.College_Name = this._collegeService.collegedetails.College_Name;
-      this.Address = this._collegeService.collegedetails.Address;
-      this.cgpa = this._collegeService.collegedetails.cgpa;
+this.collegeupdate();
     }
+  }
+  collegeupdate(){
+    this.College_Name = this.collegedetailss.College_Name;
+    this.Address = this.collegedetailss.Address;
+    this.cgpa = this.collegedetailss.cgpa;
   }
   save() {
     let collegedetail =
@@ -70,12 +74,14 @@ export class CollegeComponent implements OnInit {
         "Address": this.Address,
         "cgpa": this.cgpa
       }
+      this._collegeService.setcollegedata(collegedetail);
     this._collegeService.collegedetails = collegedetail;
     this.collegedetailss = this._collegeService.collegedetails
     this.showdetail = false;
 
   }
   update() {
+    this.collegeupdate();
     this.showdetail = true;
   }
 

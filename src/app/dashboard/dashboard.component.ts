@@ -32,7 +32,8 @@ export class DashboardComponent implements OnInit {
   constructor(private router:Router,private _profileService: ProfileService) { }
 
   ngOnInit() {
-this.detail=this._profileService.details;
+
+this.detail=this._profileService.getdata();
 
   }
   Details(){this.router.navigate(['/web/profile']);

@@ -54,16 +54,20 @@ export class SchoolComponent implements OnInit {
 
   ngOnInit() {
     this.schooldetails = this._schoolService.schooldetails;
+    this.schooldetails=this._schoolService.getschooldata();
     if(this.schooldetails.School_Name=='')
     {
       this.showdetail=true;
     }
     else{
       this.showdetail=false;
-      this.School_Name = this._schoolService.schooldetails.School_Name;
-      this.Address = this._schoolService.schooldetails.Address;
-      this.Marks = this._schoolService.schooldetails.Marks;
+ this.updateState();
     }
+  }
+  updateState(){
+    this.School_Name = this.schooldetails.School_Name;
+    this.Address = this.schooldetails.Address;
+    this.Marks = this.schooldetails.Marks;
   }
 
   save() {
@@ -74,12 +78,14 @@ export class SchoolComponent implements OnInit {
           "Address": this.Address,
           "Marks": this.Marks
         }
+        this._schoolService.setschooldata(schooldetail);
       this._schoolService.schooldetails = schooldetail;
       this.schooldetails = this._schoolService.schooldetails;
       this.showdetail=false;
     }
   }
   update(){
+    this.updateState();
     this.showdetail=true;
   }
 }

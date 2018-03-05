@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
 <input  [(ngModel)]=Father_Name type="text"><br>
 <label>Mother's Name:</label>
 <input  [(ngModel)]=Mother_Name type="text"><br>
-<button (click)="save()" type="submit">Save</button>
+<button (click)="save(Mother_Name)" type="submit">Save</button>
 
 </div>
 <div class="forms" *ngIf="!showdetail">
@@ -40,61 +40,54 @@ import { Router } from '@angular/router';
       top:250px;
       width: 400px;
     }
-
-
     label,h3 { float: left; width: 150px; }
-
     input { float: left; width: 250px; }
-   
     `
   ]
 })
 export class ProfileComponent implements OnInit {
-  public showdetail=true;
+  public showdetail = true;
   public name = '';
   public age = '';
   public Father_Name = '';
   public Mother_Name = '';
   public detail;
-  
+
   constructor(private router: Router, private _profileService: ProfileService) { }
 
   ngOnInit() {
-  this.detail = this._profileService.details;
-  if(this.detail.name==='')
-    {
-      this.showdetail=true;
-    }
-    else{
-      this.showdetail=false;
-      this.name = this._profileService.details.name;
-      this.age = this._profileService.details.age;
-      this.Father_Name = this._profileService.details.Father_Name;
-      this.Mother_Name = this._profileService.details.Mother_Name;
+    this.detail = this._profileService.getdata();
+    if (this.detail.name === '') {
+      this.showdetail = true;
+    } else {
+      this.showdetail = false;
+      this.initUpdateState();
     }
   }
+
+  initUpdateState() {
+    this.name = this.detail.name;
+    this.age = this.detail.age;
+    this.Father_Name = this.detail.Father_Name;
+    this.Mother_Name = this.detail.Mother_Name;
+  }
+
   save() {
-    
     let details =
       {
         "name": this.name,
-
         "age": this.age,
-
         "Father_Name": this.Father_Name,
-
         "Mother_Name": this.Mother_Name
       }
-
-
-    this._profileService.details=details;
-    this.detail=this._profileService.details;
-    this.showdetail=false;
-    
- 
+    this._profileService.setdata(details);
+    this.detail = this._profileService.getdata();
+    this.showdetail = false;
   }
-  update(){
-    this.showdetail=true;
+
+  update() {
+    this.initUpdateState();
+    this.showdetail = true;
   }
 }
 
