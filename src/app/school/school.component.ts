@@ -53,9 +53,9 @@ export class SchoolComponent implements OnInit {
   constructor(private router: Router, private _schoolService: SchoolService) { }
 
   ngOnInit() {
-    this.schooldetails = this._schoolService.schooldetails;
+    
     this.schooldetails=this._schoolService.getschooldata();
-    if(this.schooldetails.School_Name=='')
+    if(this.schooldetails.School_Name==''|| this.schooldetails.School_Name==undefined)
     {
       this.showdetail=true;
     }
@@ -79,8 +79,7 @@ export class SchoolComponent implements OnInit {
           "Marks": this.Marks
         }
         this._schoolService.setschooldata(schooldetail);
-      this._schoolService.schooldetails = schooldetail;
-      this.schooldetails = this._schoolService.schooldetails;
+      this.schooldetails=this._schoolService.getschooldata();
       this.showdetail=false;
     }
   }

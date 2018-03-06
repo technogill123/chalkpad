@@ -50,8 +50,8 @@ export class WebComponent implements OnInit {
   constructor(private router: Router, private _dataService: DataService) { }
 
   ngOnInit() {
-
-    this.id = this._dataService.username;
+    this.id=this._dataService.getlogindata();
+   
   }
   profile() {
 

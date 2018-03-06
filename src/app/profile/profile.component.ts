@@ -57,7 +57,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.detail = this._profileService.getdata();
-    if (this.detail.name === '') {
+    if (this.detail.name === '' || this.detail.name==undefined) {
       this.showdetail = true;
     } else {
       this.showdetail = false;

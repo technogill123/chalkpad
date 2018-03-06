@@ -7,10 +7,10 @@ import { ProfileService } from '../profile.service';
   selector: 'app-dashboard',
   template: `
 
-  <div class="button" *ngIf="detail.name === '' ">
+  <div class="button" *ngIf="detail.name == undefined">
   <button (click)="Details()">Add my details</button>
    </div>
-  <div class="form" *ngIf="detail.name !== '' ">
+  <div class="form" *ngIf="detail.name != undefined">
   <h3>Name: {{detail.name}}</h3>
   <h3>Age: {{detail.age}}</h3>
   </div>

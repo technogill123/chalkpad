@@ -52,9 +52,9 @@ export class CollegeComponent implements OnInit {
   constructor(private router: Router, private _collegeService: CollegeService) { }
 
   ngOnInit() {
-    this.collegedetailss = this._collegeService.collegedetails;
+ 
     this.collegedetailss=this._collegeService.getcollegedata();
-    if (this.collegedetailss.College_Name == '') {
+    if (this.collegedetailss.College_Name == ''|| this.collegedetailss.College_Name==undefined) {
       this.showdetail = true;
     }
     else {
@@ -75,8 +75,7 @@ this.collegeupdate();
         "cgpa": this.cgpa
       }
       this._collegeService.setcollegedata(collegedetail);
-    this._collegeService.collegedetails = collegedetail;
-    this.collegedetailss = this._collegeService.collegedetails
+    this.collegedetailss=this._collegeService.getcollegedata();
     this.showdetail = false;
 
   }

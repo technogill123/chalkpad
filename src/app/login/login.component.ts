@@ -30,13 +30,14 @@ export class LoginComponent implements OnInit {
   public pass;
   constructor(private router: Router, private _dataService: DataService) { }
 
-  ngOnInit() {
+  ngOnInit() {  
   }
   onclick(){
     
      if(this.id==this.pass)
       {
         this._dataService.username=this.id;
+        this._dataService.setlogindata(this.id);
         this.router.navigate(['/web/dashboard']);
     
       }
